@@ -1,0 +1,20 @@
+<table id="myTable" class="table table-striped">
+    <thead> 
+        <th>Id</th> 
+        <th>Amount Insured</th> 
+        <th>Email</th>
+        <th>User Id</th> 
+        <th>installmentPayment</th>
+    </thead> 
+    <tbody> 
+        {{#each policies}} 
+        <tr> 
+            <td>{{id}}</td> 
+            <td>{{amountInsured}}</td> 
+            <td>{{email}}</td> 
+            <td>{{clientId}}</td> 
+            <td>{{installmentPayment}}</td> 
+        </tr> 
+        {{/each}} 
+    </tbody> 
+</table> 
