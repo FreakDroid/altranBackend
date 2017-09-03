@@ -1,5 +1,5 @@
 var passport = require('passport');
-
+var ConnectRoles = require('connect-roles');
 
 module.exports = {
 
@@ -9,6 +9,9 @@ module.exports = {
 
         require('./auth-local-strategy');
         require('./auth-local-serialization');
+        const user = require('./connect-roles');
+
+        app.use(user.middleware());
     },
 
     isAuth: require('./auth-local-middleware'),

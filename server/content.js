@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const serverUtil = require('./serverUtil/serverUtil');
-
+var user = require('./auth-local/connect-roles');
 
 router.get('/', function (req, res) {
     res.render('partials/home');
@@ -95,24 +95,33 @@ router.get('/policies/name/:name', function(req, res) {
 
 //Search by User Name by policeID
 router.get('/user/policeId/:id', function(req, res) {
-    console.log("Im on the route /policies/id/:id", req.user);
 
-    //First I'm looking for the user, by the name provided
-    serverUtil.getUserByPolicieId(req.params.id).then(success =>{
-        //user found!!!!
-        console.log('testing', success);
-        return success
-    }).then(police =>{
-        //Im gonna look for the polices
-        serverUtil.getUserById(police.clientId).then(user =>{
-            console.log("user found", user);
-            res.render('partials/users/user', {user: user});  
+    
+    console.log("Im on the route /policies/id/:id", req.user.role);
+
+    if(req.user.role.toLowerCase() === 'admin'){
+        //First I'm looking for the user, by the name provided
+        serverUtil.getUserByPolicieId(req.params.id).then(success =>{
+            //user found!!!!
+            console.log('testing', success);
+            return success
+        }).then(police =>{
+            //Im gonna look for the polices
+            serverUtil.getUserById(police.clientId).then(user =>{
+                console.log("user found", user);
+                res.render('partials/users/user', {user: user});  
+            }).catch(err =>{
+                res.render('partials/users/user', {error: err});
+            })
         }).catch(err =>{
             res.render('partials/users/user', {error: err});
-        })
-    }).catch(err =>{
-        res.render('partials/users/user', {error: err});
-    });
+        });
+    }
+    else{
+        res.render('partials/accessDenied', {error: "You don't have permission to see this page"});
+    }
+
+
 });
 
 

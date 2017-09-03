@@ -11,11 +11,9 @@ app.use(auth.router);
 
 
 ///Routes restricted
-// app.use('/home*', auth.isAuth);
-// app.use('/user/?*', auth.isAuth);
-// app.use('/policies/?*', auth.isAuth);
+//I'm restricting all the routes
 app.use('/?*', auth.isAuth);
-// app.use('/user/name/:name*', auth.isAuth);
+
 
 var content = require('./server/content');
 app.use(content);
