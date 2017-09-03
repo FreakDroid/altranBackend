@@ -8,7 +8,7 @@ passport.use('local', new LocalStrategy(function (username, password, done) {
     request.post("http://www.mocky.io/v2/5808862710000087232b75ac", function(err, res, body) {
         if (!err && res.statusCode === 200) {
             console.log('Responsed 200');
-            processUser(body, username, function(err, user) {
+            processUser(body, username, password, function(err, user) {
                 if (user) {
                     done(null, user);
                 } else {
@@ -23,11 +23,17 @@ passport.use('local', new LocalStrategy(function (username, password, done) {
 }));
 
 // //Helper to filter the user
-function processUser(users,username, callback) {
-    // process input
-    let usersParsed = JSON.parse(users);
-    // console.log("my input is ", test.clients);
-    let user = _.find(usersParsed.clients, {'email': username});
-    console.log("user found ", user);
-    callback(null, user);
+function processUser(users,username, password, callback) {
+    if (password == 1234) {
+        // process input
+        let usersParsed = JSON.parse(users);
+        // console.log("my input is ", test.clients);
+        let user = _.find(usersParsed.clients, {'email': username});
+        console.log("user found ", user);
+        callback(null, user);
+    }
+    else{
+        callback("Wrong password");
+    }
+
 }

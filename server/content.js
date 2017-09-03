@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const serverUtil = require('./serverUtil/serverUtil');
-var user = require('./auth-local/connect-roles');
 
 router.get('/', function (req, res) {
     res.render('partials/home');
