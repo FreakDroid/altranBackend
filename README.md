@@ -9,16 +9,16 @@ This is a Demo to Altran
 git clone https://github.com/FreakDroid/altranBackend.git altranBackend
 ```
 
-2. Run the npm install on the path cloned. You must have node 6 or later
+2. Run the npm install on the path cloned the repo. You must have node 6 or later
 
 ```
-Casas-MacBook-Pro:altranBackend setHouse$ npm install
+ npm install
 ```
 
 3. Start the server
 
 ```
-Casas-MacBook-Pro:altranBackend setHouse$ npm start
+ npm start
 ```
 
 4. The site will be on http://localhost:9000/
