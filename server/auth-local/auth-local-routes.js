@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
+
+//Routes to handle the authentication process
 router.get('/login', function (req, res) {
     res.render('partials/login', { error: req.flash('error') });
 });

@@ -2,8 +2,7 @@ const request = require('request');
 const _ = require('lodash');
 const Promise = require('Promise');
 
-
-//Class for differents helpers to retrieve data
+//Class for differents helpers to clean and retrieve data
 var Module = (function () {
       var getUserById = function (id) {
         // public

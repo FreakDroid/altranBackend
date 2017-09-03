@@ -1,5 +1,5 @@
 var passport = require('passport');
-
+//Wraping all my stuff in one place
 module.exports = {
 
     initialize: function(app) {

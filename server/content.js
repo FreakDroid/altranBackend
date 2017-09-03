@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const serverUtil = require('./serverUtil/serverUtil');
 
+//Routes after you are logged in
 router.get('/', function (req, res) {
     res.render('partials/home');
 });

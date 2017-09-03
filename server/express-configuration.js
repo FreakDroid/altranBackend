@@ -5,7 +5,7 @@ var express = require('express'),
 const exphbs = require('express-handlebars');
 const path = require('path');
     
-
+//Config about express
 module.exports = function (app) {
 
     app.engine('.hbs', exphbs({
