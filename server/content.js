@@ -7,9 +7,10 @@ router.get('/', function (req, res) {
     res.render('partials/home');
 });
 
-router.get('/admin', function(req, res) {
-    res.render('partials/admin', {user: req.user});
+router.get('/home', function(req, res) {
+    res.render('partials/home', {user: req.user});
 });
+
 
 //Search by id
 router.get('/user/id/:id', function(req, res) {
@@ -19,6 +20,46 @@ router.get('/user/id/:id', function(req, res) {
     }).catch(err =>{
         res.render('partials/users/user', {error: err});
     });
+});
+
+
+router.get('/userSearcher', function(req, res) {
+    res.render('partials/users/userSearcher', {user: req.user});
+});
+
+router.post('/userSearcher', function(req, res) {
+    
+    let userId = req.body.userid;
+    let name = req.body.username;
+
+    //How I'm using the same page to both search, I check the param in the body
+    //Depending on which one is, I redirect to the correct page
+    if(userId){ 
+        res.redirect('/user/id/' + userId);
+    }
+    else{
+        res.redirect('/user/name/' + name);
+    }
+});
+
+
+router.get('/policiesSearcher', function(req, res) {
+    res.render('partials/policies/policiesSearcher', {user: req.user});
+});
+
+router.post('/policiesSearcher', function(req, res) {
+    
+    let policyNumber = req.body.policyNumber;
+    let name = req.body.username;
+
+    //How I'm using the same page to both search, I check the param in the body
+    //Depending on which one is, I redirect to the correct page
+    if(policyNumber){ 
+        res.redirect('/user/policeId/' + policyNumber);
+    }
+    else{
+        res.redirect('/policies/name/' + name);
+    }
 });
 
 //Search by name
@@ -38,13 +79,12 @@ router.get('/policies/name/:name', function(req, res) {
     //First I'm looking for the user, by the name provided
     serverUtil.getUserByName(req.params.name).then(success =>{
         //user found!!!!
-        console.log('testing', success);
         return success
     }).then(user =>{
         //Im gonna look for the polices
         serverUtil.getPoliciesByUserId(user.id).then(polices =>{
             console.log("polices in route ", polices);
-            res.render('partials/policies/policies', {policies: polices});  
+            res.render('partials/policies/policies', {policies: polices, user:user});  
         }).catch(err =>{
             res.render('partials/policies/policies', {error: err});
         })

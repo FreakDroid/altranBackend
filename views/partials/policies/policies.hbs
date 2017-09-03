@@ -1,4 +1,52 @@
-<table id="myTable" class="table table-striped">
+{{! Import the contents of header.html from partials}}
+{{> navigation}}
+{{#if error}}
+    <div class="container">
+        <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            {{#if error}}
+                <div class="alert alert-danger">{{error}}</div>
+            {{/if}}
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    </div>
+{{else}}
+    <div class="container">
+    <div>
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">User Id</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="inputEmail3" value="{{user.id}}" disabled>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="inputPassword3" value="{{user.name}}">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="inputPassword3" value="{{user.email}}">
+            </div>
+        </div>
+        {{#if policies}} 
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Policies count</label>
+            <div class="col-sm-10">
+                <input class="form-control" id="inputPassword3" value="{{policies.length}}">
+            </div>
+        </div>
+        {{/if}}
+    </div>
+
+</div>
+
+<div>
+    <table id="myTable" class="table table-striped">
     <thead> 
         <th>Id</th> 
         <th>Amount Insured</th> 
@@ -18,3 +66,8 @@
         {{/each}} 
     </tbody> 
 </table> 
+</div>
+{{/if}}
+
+
+

@@ -8,7 +8,7 @@ router.get('/login', function (req, res) {
 
 router.post('/login',
     passport.authenticate('local', {
-        successRedirect: '/admin',
+        successRedirect: '/home',
         failureRedirect: '/login',
         failureFlash: true
     })

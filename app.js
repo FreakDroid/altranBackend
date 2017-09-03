@@ -11,9 +11,10 @@ app.use(auth.router);
 
 
 ///Routes restricted
-app.use('/admin*', auth.isAuth);
-app.use('/user/?*', auth.isAuth);
-app.use('/policies/?*', auth.isAuth);
+// app.use('/home*', auth.isAuth);
+// app.use('/user/?*', auth.isAuth);
+// app.use('/policies/?*', auth.isAuth);
+app.use('/?*', auth.isAuth);
 // app.use('/user/name/:name*', auth.isAuth);
 
 var content = require('./server/content');
