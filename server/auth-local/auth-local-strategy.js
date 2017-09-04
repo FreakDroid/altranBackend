@@ -30,7 +30,6 @@ function processUser(users,username, password, callback) {
         // process input
         let usersParsed = JSON.parse(users);
         let user = _.find(usersParsed.clients, {'email': username});
-        console.log("user found ", user);
         callback(null, user);
     }
     else{

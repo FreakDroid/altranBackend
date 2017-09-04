@@ -15,7 +15,6 @@ router.get('/home', function(req, res) {
 //Search by id
 router.get('/user/id/:id', function(req, res) {
     serverUtil.getUserById(req.params.id).then(success =>{
-        console.log('testing', success);
         res.render('partials/users/user', {user: success});
     }).catch(err =>{
         res.render('partials/users/user', {error: err});
@@ -65,7 +64,6 @@ router.post('/policiesSearcher', function(req, res) {
 //Search by name
 router.get('/user/name/:name', function(req, res) {
     serverUtil.getUserByName(req.params.name).then(success =>{
-        console.log('testing', success);
         res.render('partials/users/user', {user: success});
     }).catch(err =>{
         res.render('partials/users/user', {error: err});
@@ -74,8 +72,6 @@ router.get('/user/name/:name', function(req, res) {
 
 //Search by Policies name
 router.get('/policies/name/:name', function(req, res) {
-    console.log("Im on the route");
-
     //First I'm looking for the user, by the name provided
     serverUtil.getUserByName(req.params.name).then(success =>{
         //user found!!!!
@@ -83,7 +79,6 @@ router.get('/policies/name/:name', function(req, res) {
     }).then(user =>{
         //Im gonna look for the polices
         serverUtil.getPoliciesByUserId(user.id).then(polices =>{
-            console.log("polices in route ", polices);
             res.render('partials/policies/policies', {policies: polices, user:user});  
         }).catch(err =>{
             res.render('partials/policies/policies', {error: err});
@@ -103,12 +98,10 @@ router.get('/user/policeId/:id', function(req, res) {
         //First I'm looking for the user, by the name provided
         serverUtil.getUserByPolicieId(req.params.id).then(success =>{
             //user found!!!!
-            console.log('testing', success);
             return success
         }).then(police =>{
             //Im gonna look for the polices
             serverUtil.getUserById(police.clientId).then(user =>{
-                console.log("user found", user);
                 res.render('partials/users/user', {user: user});  
             }).catch(err =>{
                 res.render('partials/users/user', {error: err});
@@ -120,8 +113,6 @@ router.get('/user/policeId/:id', function(req, res) {
     else{
         res.render('partials/accessDenied', {error: "You don't have permission to see this page"});
     }
-
-
 });
 
 
