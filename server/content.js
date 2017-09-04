@@ -91,8 +91,6 @@ router.get('/policies/name/:name', function(req, res) {
 //Search by User Name by policeID
 router.get('/user/policeId/:id', function(req, res) {
 
-    
-    console.log("Im on the route /policies/id/:id", req.user.role);
 
     if(req.user.role.toLowerCase() === 'admin'){
         //First I'm looking for the user, by the name provided

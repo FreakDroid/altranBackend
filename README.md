@@ -59,6 +59,23 @@ The PoliciesSearcher let you search for Policies by user name, this can be acces
 
 If you need some info to search or use the api, like user name, user id or policy id, remember that you can check it [here for user](http://www.mocky.io/v2/5808862710000087232b75ac) and [here policies](http://www.mocky.io/v2/580891a4100000e8242b75c5)
 
+Besides you can search writing the url directly
+
+```
+/user/id/:id  <---- Get a user info by id
+/user/name/:name  <--- Get a user info by name
+/user/policeId/:id <----- Get user info by policy id
+/policies/name/:name <---- Get policies by user name
+```
+
+Example
+```
+http://localhost:9000/user/id/e8fd159b-57c4-4d36-9bd7-a59ca13057bb
+http://localhost:9000/user/name/britney
+http://localhost:9000/user/policeId/64cceef9-3a01-49ae-a23b-3761b604800b
+http://localhost:9000/policies/name/lamb
+``
+
 ## Technologies used
 
 1. body-parser

@@ -36,7 +36,6 @@ var Module = (function () {
                     //I need the name capitalize
                     let nameCapitalize = _.startCase(name);
                     let user = _.find(usersParsed.clients, {'name': nameCapitalize});
-                    console.log('userbyname ', user);
                     if (user){
                         return resolve(user)
                     }
@@ -53,16 +52,13 @@ var Module = (function () {
 
 
     var getPoliciesByUserId = function (userid) {
-        console.log('Im arrive wiht', userid);
         return new Promise((resolve, reject) => {
             request.get("http://www.mocky.io/v2/580891a4100000e8242b75c5", function(err, res, body) { 
                 if (!err && res.statusCode === 200) {
                     // process input
                     let policiesParsed = JSON.parse(body);
                     let policies = _.filter(policiesParsed.policies, {'clientId': userid});
-                    console.log("policies ", policies.length);
                     if (policies){
-                        console.log("returnin polices")
                         return resolve(policies);
                     }
                     else{
@@ -77,16 +73,13 @@ var Module = (function () {
       };
 
       var getUserByPolicieId = function (policiesId) {
-        console.log('Im arrive wiht', policiesId);
         return new Promise((resolve, reject) => {
             request.get("http://www.mocky.io/v2/580891a4100000e8242b75c5", function(err, res, body) { 
                 if (!err && res.statusCode === 200) {
                     // process input
                     let policiesParsed = JSON.parse(body);
                     let policie = _.find(policiesParsed.policies, {'id': policiesId});
-                    console.log("policies find", policie);
                     if (policie){
-                        console.log("returnin polices")
                         return resolve(policie);
                     }
                     else{
