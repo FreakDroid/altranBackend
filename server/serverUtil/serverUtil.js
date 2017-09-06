@@ -35,7 +35,9 @@ var Module = (function () {
                     let usersParsed = JSON.parse(body);
                     //I need the name capitalize
                     let nameCapitalize = _.startCase(name);
-                    let user = _.find(usersParsed.clients, {'name': nameCapitalize});
+                    let user = _.find(usersParsed.clients, function(user){
+                        return user.name.toLowerCase() === name.toLowerCase()
+                    });
                     if (user){
                         return resolve(user)
                     }
