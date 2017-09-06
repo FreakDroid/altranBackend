@@ -33,8 +33,6 @@ var Module = (function () {
                 if (!err && res.statusCode === 200) {
                     // process input
                     let usersParsed = JSON.parse(body);
-                    //I need the name capitalize
-                    let nameCapitalize = _.startCase(name);
                     let user = _.find(usersParsed.clients, function(user){
                         return user.name.toLowerCase() === name.toLowerCase()
                     });
